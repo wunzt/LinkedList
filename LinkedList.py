@@ -67,16 +67,16 @@ class LinkedList:
     def contains(self, val):
         """Returns the values of the linked list."""
         if self._head is None:
-            return
+            return False
         else:
-            self.rec_contains(self._head, val)
+            return self.rec_contains(self._head, val)
 
     def rec_contains(self, node, val):
         """Helper for contains()"""
         if node.data == val:
             return True
         elif node.next is not None:
-            self.rec_contains(node.next, val)
+            return self.rec_contains(node.next, val)
         else:
             return False
 
