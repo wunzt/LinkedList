@@ -1,32 +1,33 @@
 # Author: Thomas Wunz
 # GitHub username: wunzt
 # Date: 7/16/2022
-# Description:
-
+# Description: Creates a linked list with methods for adding to, removing from, returning the contents of,
+#               inserting into, reversing, and converting to a python list from, the linked list.
 
 class Node:
-    """___"""
+    """Represents a node in a linked list"""
 
     def __init__(self, data):
+        """Creates a node object with a data value and .next pointer."""
         self.data = data
         self.next = None
 
 
 class LinkedList:
-    """___"""
+    """Represents a linked list."""
 
     def __init__(self):
-        """___"""
+        """Initializes the linked list."""
         self._head = None
 
 
     def get_head(self):
-        """____"""
+        """Returns the head of the list."""
         return self._head
 
 
     def add(self, val):
-        """___"""
+        """Adds values to the end of the linked list."""
         new_node = Node(val)
 
         if self._head is None:
@@ -36,7 +37,7 @@ class LinkedList:
             tail.next = new_node
 
     def rec_add(self, node):
-        """___"""
+        """Helper for add()."""
         if node.next is not None:
             return self.rec_add(node.next)
         else:
@@ -44,7 +45,7 @@ class LinkedList:
 
 
     def remove(self, val):
-        """___"""
+        """Removes items from the end of the linked list."""
         if self._head is None:
             return
         elif self._head.data == val:
@@ -53,7 +54,7 @@ class LinkedList:
             self.rec_remove(self._head.next, self._head, val)
 
     def rec_remove(self, node, prev, val):
-        """___"""
+        """Helper for remove()."""
         if node.data == val:
             if node.next is None:
                 prev.next = None
@@ -64,14 +65,14 @@ class LinkedList:
 
 
     def contains(self, val):
-        """___"""
+        """Returns the values of the linked list."""
         if self._head is None:
             return
         else:
             self.rec_remove(self._head, val)
 
     def rec_contains(self, node, val):
-        """___"""
+        """Helper for contains()"""
         if node.data == val:
             return True
         elif node.next is not None:
@@ -81,7 +82,7 @@ class LinkedList:
 
 
     def insert(self, val, pos):
-        """___"""
+        """Inserts items into the list at a given position."""
         new_node = Node(val)
 
         if pos == 0:
@@ -91,7 +92,7 @@ class LinkedList:
             self.rec_insert(self._head.next, self._head, val, pos-1)
 
     def rec_insert(self, node, prev, val, pos):
-        """___"""
+        """Helper for insert()."""
         if pos == 0:
             new_node = Node(val)
             new_node.next = node
@@ -104,14 +105,14 @@ class LinkedList:
 
 
     def reverse(self):
-        """___"""
+        """Reverses the order of the linked list."""
         if self._head is None:
             return
         else:
             self.rec_reverse(self._head, None)
 
     def rec_reverse(self, node, prev):
-        """___"""
+        """Helper for reverse()."""
         if node.next is not None:
             self.rec_reverse(node.next, node)
         else:
@@ -121,7 +122,7 @@ class LinkedList:
 
 
     def to_plain_list(self):
-        """___"""
+        """Converts the linked list into a python list."""
         plain_list = []
 
         if self._head is None:
@@ -131,7 +132,7 @@ class LinkedList:
         return plain_list
 
     def rec_to_plain_list(self, node, list):
-        """___"""
+        """Helper for to_plain_list()."""
         list.append(node.data)
         if node.next is not None:
             self.rec_to_plain_list(node.next, list)
