@@ -69,7 +69,7 @@ class LinkedList:
         if self._head is None:
             return
         else:
-            self.rec_remove(self._head, val)
+            self.rec_contains(self._head, val)
 
     def rec_contains(self, node, val):
         """Helper for contains()"""
